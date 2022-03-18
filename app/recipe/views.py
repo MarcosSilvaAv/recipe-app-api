@@ -46,6 +46,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Retrieve the recipes for the authenticated user"""
+        tags = self.request.query_params.get('tags')
+        ingredients = self.request.query_params.get('ingredients')
         return self.queryset.filter(user=self.request.user)
 
     def get_serializer_class(self):
